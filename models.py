@@ -20,7 +20,7 @@ class User(db.Model):
     def signup(cls, username, password):
         hashed_password = bcrypt.generate_password_hash(password).decode('UTF-8')
 
-        user = User(username=username, password=password)
+        user = User(username=username, password=hashed_password)
 
         db.session.add(user)
         return user
@@ -33,5 +33,5 @@ class User(db.Model):
             authenticated = bcrypt.check_password_hash(user.password, password)
             if authenticated:
                 return user
-                
+
         return False
