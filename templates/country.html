@@ -2,8 +2,19 @@
 
 {% block content %}
 
-<h1>Results for {{ country.name }}</h1>
-
-<img src="{{ country.flag }}"></img>
+<div class="container-fluid">
+    <div class="row">
+        <h1>Results for {{ country.name }}</h1>
+    </div>
+    <div class="row">
+        <div class="col .col-lg"
+            <p>The capital of {{ country.name }} is {{ country.capital }}. 
+            They speak {{ country.languages[0].name }} and use the {{ country.currencies[0].name }}.</p>
+        </div>
+        <div class="col .col-sm">
+            <img src="{{ country.flag }}" class="img-fluid"></img>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -15,5 +15,10 @@ def home_page():
 @app.route('/country')
 def country_page():
     country_search = request.args["country-search"]
-    country = rapi.get_countries_by_name(country_search, filters=["name"])
+    country = rapi.get_countries_by_name(country_search, 
+                                        filters=["name", 
+                                        "capital", 
+                                        "flag", 
+                                        "currencies",
+                                        "languages"])
     return render_template('country.html', country=country[0])
