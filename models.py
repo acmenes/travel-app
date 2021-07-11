@@ -35,3 +35,5 @@ class User(db.Model):
                 return user
 
         return False
+
+## create classes for dream destinations and been there done thats

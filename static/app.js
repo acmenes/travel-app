@@ -1,6 +1,9 @@
 const $searchBar = document.getElementById("search-countries")
 
 BASE_URL_COUNTRIES = "https://restcountries.eu/rest/v2/name"
+BASE_URL_AMADEUS = "https://test.api.amadeus.com/v1"
+
+AMADEUS_ACCESS_TOKEN = "AItrr8OmqIAw811pYPEB4qK6GAs4"
 
 function handleClick(e) {
     e.preventDefault()
