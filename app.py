@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify, flash
 from werkzeug.utils import redirect
-from models import db, connect_db, User
+from models import db, connect_db, User, Country
 from forms import SignUpForm, LoginForm
 
 from sqlalchemy.exc import IntegrityError

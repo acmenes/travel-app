@@ -38,6 +38,14 @@ class User(db.Model):
 
 ## create classes for dream destinations and been there done thats
 
+class Country(db.Model):
+    '''Every country in the world'''
+
+    __tablename__ = 'countries'
+
+    code = db.Column(db.String)
+    country_name = db.Column(db.String, primary_key=True)
+
 def connect_db(app):
     '''Connect to the app'''
 
