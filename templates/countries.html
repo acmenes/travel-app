@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>All Countries</h1>
+
+<ul>
+    {% for country in countries %}
+        <li><a href="/country?country-search={{ country.nicename }}">{{ country.nicename }}</a></li>
+    {% endfor %}
+<ul>
+
+{% endblock %}

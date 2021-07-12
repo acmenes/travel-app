@@ -35,6 +35,13 @@ def home_page():
 
 # use the geocode to connect to amadeus 
 
+@app.route('/all-countries')
+def show_countries():
+
+    countries = Country.query.all()
+
+    return render_template('countries.html', countries=countries)
+
 @app.route('/country')
 def country_page():
     country_search = request.args["country-search"]
