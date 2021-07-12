@@ -38,13 +38,18 @@ class User(db.Model):
 
 ## create classes for dream destinations and been there done thats
 
+# I want this Country model to reflect the countries CSV I downloaded
+
 class Country(db.Model):
     '''Every country in the world'''
 
     __tablename__ = 'countries'
 
-    code = db.Column(db.String)
-    country_name = db.Column(db.String, primary_key=True)
+    id = db.Column(db.Integer)
+    iso = db.Column(db.String)
+    name = db.Column(db.String)
+    nicename = db.Column(db.String, primary_key=True)
+    iso3 = db.Column(db.String)
 
 def connect_db(app):
     '''Connect to the app'''
