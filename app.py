@@ -4,6 +4,8 @@ from forms import SignUpForm, LoginForm
 
 from restcountries import RestCountryApiV2 as rapi
 from amadeus import Client, ResponseError, Location
+from opencage.geocoder import OpenCageGeocode
+from pprint import pprint
 
 app = Flask(__name__)
 
