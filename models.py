@@ -11,16 +11,16 @@ class User(db.Model):
 
     __tablename__ = "users"
 
-    username = db.Column(db.String(20), nullable=False, unique=True)
-    bio = db.Column(db.String(150))
+    username = db.Column(db.String(20), nullable=False, unique=True, primary_key=True)
     password = db.Column(db.Text, nullable=False)
-    # destinations = db.Relationship("Destination")
-
+    img_url = db.Column(db.String)
+    bio = db.Column(db.String(150))
+    
     @classmethod
-    def signup(cls, username, password):
+    def signup(cls, username, password, img_url, bio):
         hashed_password = bcrypt.generate_password_hash(password).decode('UTF-8')
 
-        user = User(username=username, password=hashed_password)
+        user = User(username=username, password=hashed_password, img_url=img_url, bio=bio)
 
         db.session.add(user)
         return user
@@ -37,3 +37,9 @@ class User(db.Model):
         return False
 
 ## create classes for dream destinations and been there done thats
+
+def connect_db(app):
+    '''Connect to the app'''
+
+    db.app = app
+    db.init_app(app)

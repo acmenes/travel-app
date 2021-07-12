@@ -1,6 +1,7 @@
 from flask.app import Flask
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
+from wtforms.fields.simple import TextAreaField
 from wtforms.validators import DataRequired, Email, InputRequired, Length
 
 
@@ -9,7 +10,8 @@ class SignUpForm(FlaskForm):
 
     username = StringField('Username', validators=[InputRequired()])
     password = PasswordField('Password', validators=[Length(min=6)])
-    image_url = StringField('Image URL')
+    bio = TextAreaField('About You')
+    img_url = StringField('Image URL')
 
 class LoginForm(FlaskForm):
     '''Form for logging into your account'''

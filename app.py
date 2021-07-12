@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, jsonify, flash
-
+from werkzeug.utils import redirect
+from models import db, connect_db, User
 from forms import SignUpForm, LoginForm
+
+from sqlalchemy.exc import IntegrityError
 
 from restcountries import RestCountryApiV2 as rapi
 from amadeus import Client, ResponseError, Location
@@ -19,11 +22,18 @@ amadeus = Client(
     client_secret='qB6Ix6NuAsBwx0m8'
 )
 
+geocode_key = '31bce992a33045daadc50ea7e0902774'
+geocoder = OpenCageGeocode(geocode_key)
+
+connect_db(app)
+
 # use rapi.get_countries_by_name(countryname)
 
 @app.route('/')
 def home_page():
     return render_template('home.html')
+
+# use the geocode to connect to amadeus 
 
 @app.route('/country')
 def country_page():
@@ -38,11 +48,30 @@ def country_page():
 
 ### LOGIN AND SIGNUP ROUTES
 
-@app.route('/signup')
+@app.route('/signup', methods=["GET", "POST"])
 def sign_up():
+    '''Handles user signup'''
     form = SignUpForm()
 
-    return render_template('signup.html', form=form)
+    if form.validate_on_submit():
+        try:
+            new_user = User.signup(
+                username = form.username.data,
+                password = form.password.data,
+                img_url = form.img_url.data,
+                bio = form.bio.data
+            )
+            db.session.add(new_user)
+            db.session.commit()
+
+        except IntegrityError:
+            flash("username is taken", "danger")
+            return render_template('signup.html', form=form)
+    
+        return redirect('/')
+
+    else:
+        return render_template('signup.html', form=form)
 
 @app.route('/login')
 def login_user():
@@ -51,6 +80,13 @@ def login_user():
     # if form.validate_on_submit:
 
     return render_template('login.html', form=form)
+
+## USER PAGE
+
+@app.route('/users/<username>')
+def user_page(username):
+    user = User.query.get_or_404(username)
+    return render_template('user.html', user=user)
 
 ### ADDING DESTINATIONS
 
