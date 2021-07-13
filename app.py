@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, flash
+from flask import Flask, render_template, request, jsonify, flash, session, g
 from werkzeug.utils import redirect
 from models import db, connect_db, User, Country, Unesco
 from forms import SignUpForm, LoginForm
@@ -25,15 +25,43 @@ amadeus = Client(
 geocode_key = '31bce992a33045daadc50ea7e0902774'
 geocoder = OpenCageGeocode(geocode_key)
 
+CURR_USER_KEY = "curr_user"
+
 connect_db(app)
 
-# use rapi.get_countries_by_name(countryname)
+
+### LOGGING IN AND OUT
+
+@app.before_request
+def add_global_user():
+    '''If you are logged in, you will be added as the Global User'''
+
+    if CURR_USER_KEY in session:
+        g.user = User.query.get(session[CURR_USER_KEY])
+
+    else:
+        g.user = None
+
+def do_login(user):
+    '''Log In A User'''
+
+    session[CURR_USER_KEY] = user.username
+
+def do_logout():
+    '''Log Out A User'''
+
+    if CURR_USER_KEY in session:
+        del session[CURR_USER_KEY]
+
+### HOME ROUTE
 
 @app.route('/')
 def home_page():
     return render_template('home.html')
 
 # use the geocode to connect to amadeus 
+
+### CONUTRIES ROUTES
 
 @app.route('/all-countries')
 def show_countries():
@@ -62,31 +90,49 @@ def sign_up():
 
     if form.validate_on_submit():
         try:
-            new_user = User.signup(
+            user = User.signup(
                 username = form.username.data,
                 password = form.password.data,
                 img_url = form.img_url.data,
                 bio = form.bio.data
             )
-            db.session.add(new_user)
+            db.session.add(user)
             db.session.commit()
 
         except IntegrityError:
             flash("username is taken", "danger")
             return render_template('signup.html', form=form)
+        
+        do_login(user)
     
         return redirect('/')
 
     else:
         return render_template('signup.html', form=form)
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login_user():
     form = LoginForm()
 
-    # if form.validate_on_submit:
+    if form.validate_on_submit:
+        user = User.authenticate(form.username.data, form.password.data)
+
+        if user:
+            do_login(user)
+            flash(f"Welcome back, {user.username}", "success")
+            return redirect('/')
+        
+        else: 
+            flash("Username or Password Not Correct")
+            return redirect('/login')
 
     return render_template('login.html', form=form)
+
+@app.route('/logout')
+def logout_user():
+    session.pop(CURR_USER_KEY)
+    flash("You have logged out.")
+    return redirect('/')
 
 ## USER PAGE
 
