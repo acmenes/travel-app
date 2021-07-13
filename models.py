@@ -1,5 +1,6 @@
 '''For user and destinations models'''
 
+from sqlalchemy.sql.schema import ForeignKey
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 
@@ -50,6 +51,35 @@ class Country(db.Model):
     name = db.Column(db.String)
     nicename = db.Column(db.String, primary_key=True)
     iso3 = db.Column(db.String)
+
+class Unesco(db.Model):
+    '''Using this list, share a list of UNESCO sites in each country'''
+
+    __tablename__ = 'usites'
+
+    category = db.Column(db.String)
+    country_en = db.Column(db.String, primary_key=True)
+    region_en = db.Column(db.String)
+    unique_number = db.Column(db.String)
+    id_no = db.Column(db.String)
+    rev_bis = db.Column(db.String)
+    name = db.Column(db.String)
+    short_description = db.Column(db.String)
+    justification_en = db.Column(db.String)
+    date_inscribed = db.Column(db.String)
+    secondary_dates = db.Column(db.String)
+    danger = db.Column(db.String, nullable=True)
+    date_end = db.Column(db.String, nullable=True)
+    danger_list = db.Column(db.String)
+    longitude = db.Column(db.String)
+    latitude = db.Column(db.String)
+    hectares = db.Column(db.String)
+    criteria_txt = db.Column(db.String)
+    category_short = db.Column(db.String)
+    iso_code = db.Column(db.String)
+    udnp_code = db.Column(db.String)
+    transboundary = db.Column(db.String)
+
 
 def connect_db(app):
     '''Connect to the app'''
