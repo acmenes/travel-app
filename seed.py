@@ -2,7 +2,7 @@
 
 from csv import DictReader
 from app import db 
-from models import User, Country, Unesco
+from models import User, Country, Unesco, Destination, VisitedCountry
 
 db.drop_all()
 db.create_all()
@@ -18,5 +18,14 @@ with open('generator/country_database.csv') as countries:
 u1 = User(username="Alyssa", password="MillieIsGood", bio="Musician and Coder", img_url="https://picsum.photos/200")
 
 db.session.add(u1)
-
 db.session.commit()
+
+# d1 = Destination(user="Alyssa", country_name="Kyrgyzstan")
+# d2 = Destination(user="Alyssa", country_name="Azerbaijan")
+# d3 = Destination(user="Alyssa", country_name="Japan")
+# v1 = VisitedCountry(user="Alyssa", country_name="United States of America")
+# v2 = VisitedCountry(user="Alyssa", country_name="Panama")
+
+# db.session.add_all([d1, d2, d3, v2])
+
+# db.session.commit()

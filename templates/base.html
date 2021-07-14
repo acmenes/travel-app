@@ -22,6 +22,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/all-countries">Browse All The Countries</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/unesco-sites">Browse Our UNESCO World Heritage Sites</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="/signup" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Your Account
@@ -30,7 +33,7 @@
                 <a class="dropdown-item" href="/signup">Sign Up</a>
                 <a class="dropdown-item" href="/login">Sign In</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Your Profile</a>
+                <a class="dropdown-item" href="/users/{{ g.user.username }}">{{ g.user.username }}'s Page</a>
               </div>
             </li>
           </ul>

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify, flash, session, g
 from werkzeug.utils import redirect
-from models import db, connect_db, User, Country, Unesco
+from models import db, connect_db, User, Country, Unesco, Destination, VisitedCountry
 from forms import SignUpForm, LoginForm
 
 from sqlalchemy.exc import IntegrityError
@@ -72,6 +72,7 @@ def show_countries():
 
 @app.route('/country')
 def country_page():
+    # country_from_db = Country.query.get_or_404(country)
     country_search = request.args["country-search"]
     country = rapi.get_countries_by_name(country_search, 
                                         filters=["name", 
@@ -80,6 +81,10 @@ def country_page():
                                         "currencies",
                                         "languages"])
     return render_template('country.html', country=country[0])
+
+@app.route('/unesco-sites')
+def unesco_sites():
+    return "these incredible sights are often rife with cultural/historical significance, or are natural wonders"
 
 ### LOGIN AND SIGNUP ROUTES
 
@@ -139,7 +144,11 @@ def logout_user():
 @app.route('/users/<username>')
 def user_page(username):
     user = User.query.get_or_404(username)
-    return render_template('user.html', user=user)
+    destinations = Destination.query.all()
+    visited_countries = VisitedCountry.query.all()
+    return render_template('user.html', user=user, 
+                                        destinations=destinations, 
+                                        visited_countries=visited_countries)
 
 ### ADDING DESTINATIONS
 

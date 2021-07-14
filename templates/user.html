@@ -5,8 +5,20 @@
 <div class="container-fluid">
     <h1>{{ user.username }}'s Travel Page</h1>
     <p>{{ user.bio }}</p>
-    <p>Places I Want To Visit:</p>
+    <h2>Places I Want To Visit:</h2>
+        <ul>
+            {% for destination in user.destinations %}
+                <li>
+                    {{ destination.country_name }}
+                </li>
+            {% endfor %}
+        </ul>
     <p>Places I Visited:</p>
+         {% for visited_country in user.visited_countries %}
+            <li>
+                {{ visited_country.country_name }}
+            </li>
+        {% endfor %}
 </div>
 
 {% endblock %}

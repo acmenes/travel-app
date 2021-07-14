@@ -16,6 +16,9 @@ class User(db.Model):
     password = db.Column(db.Text, nullable=False)
     img_url = db.Column(db.String)
     bio = db.Column(db.String(150))
+
+    destinations = db.relationship('Destination')
+    visited_countries = db.relationship('VisitedCountry')
     
     @classmethod
     def signup(cls, username, password, img_url, bio):
@@ -80,6 +83,19 @@ class Unesco(db.Model):
     udnp_code = db.Column(db.String)
     transboundary = db.Column(db.String)
 
+class Destination(db.Model):
+
+    __tablename__ = "destinations"
+
+    user = db.Column(db.String, db.ForeignKey('users.username'))
+    country_name = db.Column(db.String, db.ForeignKey('countries.nicename'), primary_key=True)
+
+class VisitedCountry(db.Model):
+
+    __tablename__ = "visited_countries"
+
+    user = db.Column(db.String, db.ForeignKey('users.username'))
+    country_name = db.Column(db.String, db.ForeignKey('countries.nicename'), primary_key=True)
 
 def connect_db(app):
     '''Connect to the app'''
