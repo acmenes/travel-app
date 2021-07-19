@@ -63,12 +63,23 @@ def home_page():
 
 ### CONUTRIES ROUTES
 
-@app.route('/all-countries')
+@app.route('/countries')
 def show_countries():
 
     countries = Country.query.all()
 
     return render_template('countries.html', countries=countries)
+
+@app.route('/countries/<nicename>')
+def show_country(nicename):
+    country = Country.query.get(nicename)
+    country_search = rapi.get_countries_by_name(nicename, 
+                                        filters=["name", 
+                                        "capital", 
+                                        "flag", 
+                                        "currencies",
+                                        "languages"])
+    return render_template('country.html', country=country_search[0])
 
 @app.route('/country')
 def country_page():
@@ -117,6 +128,7 @@ def sign_up():
 
 @app.route('/login', methods=["GET", "POST"])
 def login_user():
+
     form = LoginForm()
 
     if form.validate_on_submit:
@@ -127,9 +139,8 @@ def login_user():
             flash(f"Welcome back, {user.username}", "success")
             return redirect('/')
         
-        else: 
-            flash("Username or Password Not Correct")
-            return redirect('/login')
+        
+        flash("Username or Password Not Correct")
 
     return render_template('login.html', form=form)
 
@@ -152,13 +163,27 @@ def user_page(username):
 
 ### ADDING DESTINATIONS
 
-@app.route('/add-dream-dest')
-def add_dreamdest():
-    return "Added"
+@app.route('/countries/<nicename>/add-dream-dest', methods=["POST"])
+def add_dreamdest(nicename):
+    country = Country.query.get_or_404(nicename)
+    new_dest = Destination(
+        user = g.user.username,
+        country_name = country.nicename
+    )
+    db.session.add(new_dest)
+    db.session.commit()
+    return redirect(f'/countries/{nicename}')
 
-@app.route('/add-been-there')
-def add_done():
-    return "Added"
+@app.route('/countries/<nicename>/add-been-there', methods=["POST"])
+def add_done(nicename):
+    country = Country.query.get_or_404(nicename)
+    visited_dest = VisitedCountry(
+        user = g.user.username,
+        country_name = country.nicename
+    )
+    db.session.add(visited_dest)
+    db.session.commit()
+    return redirect(f'/countries/{nicename}')
 
 ### TEST ROUTES ###
 
@@ -172,3 +197,8 @@ def test_app():
 def test_2():
     res = amadeus.shopping.activities.get(latitude=39.9042, longitude=116.4074)
     return jsonify(res.data)
+
+@app.route('/test-likes')
+def test_3(curr_user):
+    curr_user = User.query.get(session[CURR_USER_KEY])
+    return curr_user.destinations

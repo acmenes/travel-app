@@ -6,7 +6,7 @@
 
 <ul>
     {% for country in countries %}
-        <li><a href="/country?country-search={{ country.nicename }}">{{ country.nicename }}</a></li>
+        <li><a href="/countries/{{ country.nicename }}">{{ country.nicename }}</a></li>
     {% endfor %}
 <ul>
 

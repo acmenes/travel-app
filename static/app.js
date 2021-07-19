@@ -5,6 +5,9 @@ BASE_URL_AMADEUS = "https://test.api.amadeus.com/v1"
 
 AMADEUS_ACCESS_TOKEN = "AItrr8OmqIAw811pYPEB4qK6GAs4"
 
+const $addDreamDest = document.getElementById("add-dream-dest")
+const $addBeenThere = document.getElementById("add-been-there")
+
 function handleClick(e) {
     e.preventDefault()
     processForm()
@@ -29,6 +32,12 @@ async function processForm(searchterm) {
 $("#search-countries").on("submit", handleClick);
 
 // $("#search-button").on("click", processForm)
+
+$("#add-dream-fest").on("submit", handleDreamDest)
+
+function handleDreamDest() {
+    e.preventDefault()
+}
 
 function testFunc(searchTerm) {
     const res = await axios.get(`${BASE_URL_COUNTRIES}/${searchTerm}`)
