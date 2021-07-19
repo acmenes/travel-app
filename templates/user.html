@@ -1,24 +1,51 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div class="container-fluid">
-    <h1>{{ user.username }}'s Travel Page</h1>
-    <p>{{ user.bio }}</p>
-    <h2>Places I Want To Visit:</h2>
-        <ul>
-            {% for destination in user.destinations %}
-                <li>
-                    {{ destination.country_name }}
-                </li>
-            {% endfor %}
-        </ul>
-    <p>Places I Visited:</p>
-         {% for visited_country in user.visited_countries %}
-            <li>
-                {{ visited_country.country_name }}
-            </li>
-        {% endfor %}
+    <div class="row py-5 px-4">
+    <div class="col-md-5 mx-auto">
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 cover">
+                <div class="media align-items-end profile-head">
+                    <h1>{{ user.username }}'s Profile</h1>
+                    <div class="profile mr-3"><img class= "profile-pic" src={{ user.img_url }}></div>
+                    <br><br><br>
+                </div>
+            </div>
+            <div class="px-4 py-3">
+                <h5 class="mb-0">About</h5>
+                <div class="p-4 rounded shadow-sm bg-light">
+                    <p class="font-italic mb-0">{{ user.bio }}</p>
+                </div>
+            </div>
+            <div class="py-4 px-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">My Dream Destinations</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                </div>
+                <div class="row">
+                    {% for destination in user.destinations %}
+                        <div class="col-lg-6 mb-2 pr-lg-1">
+                            <a href="/countries/{{ destination.country_name }}">{{ destination.country_name }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+             <div class="py-4 px-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Places I've Visited</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                </div>
+                <div class="row">
+                    {% for visited_country in user.visited_countries %}
+                        <div class="col-lg-6 mb-2 pr-lg-1">
+                            <a href="/countries/{{ visited_country.country_name }}">{{ visited_country.country_name }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+        
+
 
 {% endblock %}
