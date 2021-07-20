@@ -17,9 +17,17 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///travel-app'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
+### test key
+# amadeus = Client(
+#     client_id='GG2OA3MfjLRuOGzGavkdcHcWGCMKHws7',
+#     client_secret='qB6Ix6NuAsBwx0m8'
+# )
+
+### prod key
+
 amadeus = Client(
-    client_id='GG2OA3MfjLRuOGzGavkdcHcWGCMKHws7',
-    client_secret='qB6Ix6NuAsBwx0m8'
+    client_id='xASzeerH5RXb2vb0ZJKdTCngmK6mI0Ur',
+    client_secret='zAfkOnTUieumHNmo'
 )
 
 geocode_key = '31bce992a33045daadc50ea7e0902774'
@@ -28,7 +36,6 @@ geocoder = OpenCageGeocode(geocode_key)
 CURR_USER_KEY = "curr_user"
 
 connect_db(app)
-
 
 ### LOGGING IN AND OUT
 

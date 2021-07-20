@@ -1,9 +1,9 @@
 const $searchBar = document.getElementById("search-countries")
 
-BASE_URL_COUNTRIES = "https://restcountries.eu/rest/v2/name"
-BASE_URL_AMADEUS = "https://test.api.amadeus.com/v1"
+const BASE_URL_COUNTRIES = "https://restcountries.eu/rest/v2/name"
+const BASE_URL_AMADEUS = "http://api.amadeus.com"
 
-AMADEUS_ACCESS_TOKEN = "AItrr8OmqIAw811pYPEB4qK6GAs4"
+const AMADEUS_ACCESS_TOKEN = "xASzeerH5RXb2vb0ZJKdTCngmK6mI0Ur"
 
 const $addDreamDest = document.getElementById("add-dream-dest")
 const $addBeenThere = document.getElementById("add-been-there")
@@ -49,4 +49,9 @@ function testFunc(searchTerm) {
     console.log(`Languages spoken are ${country.languages[0]}`)
     console.log(`${country.name} is in this timezone: ${country.timezones}`)
     console.log(country.flag)
+}
+
+async function testAmadeus() {
+    const res = await axios.get(`${BASE_URL_AMADEUS}`)
+    console.log(res)
 }

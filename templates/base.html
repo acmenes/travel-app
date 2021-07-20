@@ -26,17 +26,22 @@
             <li class="nav-item">
               <a class="nav-link" href="/unesco-sites">Browse Our UNESCO World Heritage Sites</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="{{g.user.username}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Your Account
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/signup">Sign Up</a>
-                <a class="dropdown-item" href="/login">Sign In</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/users/{{ g.user.username }}">{{ g.user.username }}'s Page</a>
-              </div>
-            </li>
+            {% if g.user %}
+               <li class="nav-item">
+                <a class="nav-link btn btn-primary text-white" type="button" href="users/{{ g.user.username }}" data-toggle="modal" data-target="#myModal">{{ g.user.username }}'s Account</a>                  
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn btn-danger text-white" type="button" href="/logout" data-toggle="modal" data-target="#myModal">Sign Out</a>
+              </li>
+            {% else %}
+             <li class="nav-item">
+                <a class="nav-link btn btn-primary text-white" type="button" href="/login" data-toggle="modal" data-target="#myModal">Log In</a>                  
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn btn-danger text-white" type="button" href="/signup" data-toggle="modal" data-target="#myModal">Register</a>
+              </li>
+            {% endif %}
+            
           </ul>
           <!-- <form class="d-flex">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
