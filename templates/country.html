@@ -32,8 +32,7 @@
         <div class="col .col-sm">
             <img src="{{ country.flag }}" class="img-fluid"></img>
         </div>
-        <div class="row">
-            <div class="col .col-md">
+     
             <h2>Things to do in {{ country.capital }}:</h2>
             {% for poi in pois %}
             <div class="card text-white bg-primary mb-5" style="max-width: 50rem;">
@@ -42,30 +41,24 @@
                     <h5 class="card-title">{{ poi.name }}</h5>
                     <h6 class="card-text">Tags:
                        {% for tag in poi.tags %}
-                            {{ tag }}
+                       <button type="button" class="btn btn-secondary btn-sm tag-button">{{ tag }}</button>     
                         {% endfor %}
-                    </h6>
+                   </h6>
             </div>
             {% endfor %}
-            </div>
-        </div>
-         <div class="row">
-            <div class="col .col-md">
+  
             <h2>Tours in {{ country.capital }}:</h2>
             {% for tour in tours %}
-           <div class="card text-white bg-primary mb-5"  style="width: 50rem;">
+            <div class="card text-white bg-primary mb-5"  style="width: 50rem;">
                 <div class="card-body">
-                <img src="{{ tour.pictures[0] }}" class="tour-pic"></img>
-                <h5 class="card-title">{{ tour.name }}}</h5>
-                <p class="card-text">{{ tour.shortDescription }}</p>
-                <a href="{{ tour.bookingLink }}" class="btn btn-primary" target="_blank">Book Now for {{ tour.price.amount }}</a>
-            </div>
+                    <img src="{{ tour.pictures[0] }}" class="tour-pic"></img>
+                    <h5 class="card-title">{{ tour.name }}</h5>
+                    <p class="card-text">{{ tour.shortDescription }}</p>
+                    <a href="{{ tour.bookingLink }}" class="btn btn-primary" target="_blank">Book Now for {{ tour.price.amount }}</a>
+                </div>
             </div>
             {% endfor %}
-            </div>
-        </div>
-         <div class="row">
-            <div class="col .col-sm">
+
             <h2>Is {{ country.capital }} safe?:</h2>
             {% for safety_rating in safety_ratings %}
             <h6>Safety rating in {{safety_rating.name}}</h6>
@@ -77,9 +70,6 @@
                 {% endfor %}
             </ul>
             {% endfor %}
-            </div>
-        </div>
     </div>
 </div>
-
 {% endblock %}

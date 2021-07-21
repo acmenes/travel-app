@@ -21,6 +21,19 @@
     border-radius: 50%;
 }
 
+.fa-plane{
+    margin-right: 5px;
+}
+
 /* .card {
     margin-bottom: 15px;
 } */
+
+.tour-pic {
+    max-width: 30rem;
+    margin-bottom: 10px;
+}
+
+.tag-button {
+    border-radius: 20%;
+}
