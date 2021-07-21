@@ -93,9 +93,11 @@ def show_country(nicename):
                                                               longitude=coords[0]['geometry']['lng'])
     pois = amadeus.reference_data.locations.points_of_interest.get(latitude=coords[0]['geometry']['lat'],
                                                               longitude=coords[0]['geometry']['lng'])
+    tours = amadeus.shopping.activities.get(latitude=coords[0]['geometry']['lat'],
+                                            longitude=coords[0]['geometry']['lng'])
     return render_template('country.html', country=country_search[0], 
-                                        safety_rating=safety_rating.data,
-                                        pois=pois.data)
+                                        safety_ratings=safety_rating.data,
+                                        pois=pois.data, tours=tours.data)
 
 @app.route('/country')
 def country_page():
@@ -136,6 +138,7 @@ def sign_up():
             return render_template('signup.html', form=form)
         
         do_login(user)
+        flash("Thank you for signing up!", "success")
     
         return redirect('/')
 
