@@ -157,8 +157,9 @@ def login_user():
             do_login(user)
             flash(f"Welcome back, {user.username}", "success")
             return redirect('/')
-        
-        flash("Username or Password Not Correct")
+        else:
+            flash("Username or Password Not Correct")
+            return render_template('login.html', form=form)
 
     return render_template('login.html', form=form)
 
@@ -183,15 +184,35 @@ def user_page(username):
 
 @app.route('/countries/<nicename>/add-dream-dest', methods=["POST"])
 def add_dreamdest(nicename):
+    '''Adding a country to a user's dream destinations list'''
+
     country = Country.query.get_or_404(nicename)
+
     new_dest = Destination(
         user = g.user.username,
         country_name = country.nicename
     )
+    ## this doesn't seem to work
+    # if new_dest in g.user.destinations:
+    #     flash("This country is already on your Dream Destinations List!", "danger")
+    #     return redirect(f'/countries/{nicename}')
+  
     db.session.add(new_dest)
     db.session.commit()
-    flash("Added to dream destinations!", "sucess")
+    flash("Added to dream destinations!", "success")
     return redirect(f'/countries/{nicename}')
+
+@app.route('/countries/<nicename>/remove-dream-dest', methods=["POST"])
+def remove_dreamdest(nicename):
+    '''Removing a destination from your list'''
+
+    dream_destination = Destination.query.get_or_404(nicename)
+    g.user.destinations.remove(dream_destination)
+    db.session.commit()
+    flash("This destination has been removed from your list", "danger")
+
+    return redirect(f'/countries/{nicename}')
+
 
 @app.route('/countries/<nicename>/add-been-there', methods=["POST"])
 def add_done(nicename):
@@ -204,6 +225,14 @@ def add_done(nicename):
     db.session.commit()
     flash("Added to your been there list!", "sucess")
     return redirect(f'/countries/{nicename}')
+
+### Error Handlers
+
+@app.errorhandler(404)
+def page_not_found(e):
+    '''For errors'''
+
+    return redirect('404.html'), 404
 
 ### TEST ROUTES ###
 

@@ -87,8 +87,9 @@ class Destination(db.Model):
 
     __tablename__ = "destinations"
 
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user = db.Column(db.String, db.ForeignKey('users.username'))
-    country_name = db.Column(db.String, db.ForeignKey('countries.nicename'), primary_key=True)
+    country_name = db.Column(db.String, db.ForeignKey('countries.nicename'))
 
 class VisitedCountry(db.Model):
 
