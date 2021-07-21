@@ -27,7 +27,8 @@ app.config['SQLALCHEMY_ECHO'] = True
 
 amadeus = Client(
     client_id='xASzeerH5RXb2vb0ZJKdTCngmK6mI0Ur',
-    client_secret='zAfkOnTUieumHNmo'
+    client_secret='zAfkOnTUieumHNmo',
+    hostname='production'
 )
 
 geocode_key = '31bce992a33045daadc50ea7e0902774'
@@ -86,7 +87,15 @@ def show_country(nicename):
                                         "flag", 
                                         "currencies",
                                         "languages"])
-    return render_template('country.html', country=country_search[0])
+    cap_country = (f'{country_search[0].capital}, {country_search[0].name}')
+    coords = geocoder.geocode(cap_country)
+    safety_rating = amadeus.safety.safety_rated_locations.get(latitude=coords[0]['geometry']['lat'],
+                                                              longitude=coords[0]['geometry']['lng'])
+    pois = amadeus.reference_data.locations.points_of_interest.get(latitude=coords[0]['geometry']['lat'],
+                                                              longitude=coords[0]['geometry']['lng'])
+    return render_template('country.html', country=country_search[0], 
+                                        safety_rating=safety_rating.data,
+                                        pois=pois.data)
 
 @app.route('/country')
 def country_page():
@@ -98,7 +107,7 @@ def country_page():
                                         "flag", 
                                         "currencies",
                                         "languages"])
-    return render_template('country.html', country=country[0])
+    return redirect(f'/countries/{country_search}')
 
 @app.route('/unesco-sites')
 def unesco_sites():
@@ -146,7 +155,6 @@ def login_user():
             flash(f"Welcome back, {user.username}", "success")
             return redirect('/')
         
-        
         flash("Username or Password Not Correct")
 
     return render_template('login.html', form=form)
@@ -179,6 +187,7 @@ def add_dreamdest(nicename):
     )
     db.session.add(new_dest)
     db.session.commit()
+    flash("Added to dream destinations!", "sucess")
     return redirect(f'/countries/{nicename}')
 
 @app.route('/countries/<nicename>/add-been-there', methods=["POST"])
@@ -190,6 +199,7 @@ def add_done(nicename):
     )
     db.session.add(visited_dest)
     db.session.commit()
+    flash("Added to your been there list!", "sucess")
     return redirect(f'/countries/{nicename}')
 
 ### TEST ROUTES ###
@@ -202,7 +212,8 @@ def test_app():
 
 @app.route('/test2')
 def test_2():
-    res = amadeus.shopping.activities.get(latitude=39.9042, longitude=116.4074)
+    # res = amadeus.shopping.activities.get(latitude=40.0, longitude=3.7)
+    res = amadeus.reference_data.locations.point_of_interest('9CB40CB5D0').get()
     return jsonify(res.data)
 
 @app.route('/test-likes')

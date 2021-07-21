@@ -32,6 +32,18 @@
         <div class="col .col-sm">
             <img src="{{ country.flag }}" class="img-fluid"></img>
         </div>
+        <div class="row">
+            <div class="col .col-sm">
+            <h2>Things to do in {{ country.capital }}:</h2>
+            <p>{{ pois }}</p>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col .col-sm">
+            <h2>Is {{ country.capital }} safe?:</h2>
+            <p>{{ safety_rating }}</p>
+            </div>
+        </div>
     </div>
 </div>
 

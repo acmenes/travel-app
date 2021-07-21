@@ -25,7 +25,7 @@
             </li>
             {% if g.user %}
                <li class="nav-item">
-                <a class="nav-link btn btn-primary text-white" type="button" href="users/{{ g.user.username }}" data-toggle="modal" data-target="#myModal">{{ g.user.username }}'s Account</a>                  
+                <a class="nav-link btn btn-primary text-white" type="button" href="/users/{{ g.user.username }}" data-toggle="modal" data-target="#myModal">{{ g.user.username }}'s Account</a>                  
               </li>
               <li class="nav-item">
                 <a class="nav-link btn btn-danger text-white" type="button" href="/logout" data-toggle="modal" data-target="#myModal">Sign Out</a>
@@ -35,7 +35,7 @@
                 <a class="nav-link btn btn-primary text-white" type="button" href="/login" data-toggle="modal" data-target="#myModal">Log In</a>                  
               </li>
               <li class="nav-item">
-                <a class="nav-link btn btn-danger text-white" type="button" href="/signup" data-toggle="modal" data-target="#myModal">Register</a>
+                <a class="nav-link btn btn-success text-white" type="button" href="/signup" data-toggle="modal" data-target="#myModal">Register</a>
               </li>
             {% endif %}
             
@@ -46,6 +46,15 @@
           </form> -->
         </div>
       </nav>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                <span>{{ message }}</span>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 
 {% block content %} {% endblock %}
 
