@@ -157,7 +157,7 @@ def sign_up():
             return render_template('signup.html', form=form)
         
         do_login(user)
-        flash("Thank you for signing up!", "success")
+        flash(f"Thank you for signing up, {user.username}!", "success")
     
         return redirect('/')
 
@@ -252,21 +252,25 @@ def add_dreamdest(nicename):
         user = g.user.username,
         country_name = country.nicename
     )
-    ## this doesn't seem to work
-    # if new_dest in g.user.destinations:
-    #     flash("This country is already on your Dream Destinations List!", "danger")
-    #     return redirect(f'/countries/{nicename}')
-  
-    db.session.add(new_dest)
-    db.session.commit()
-    flash("Added to dream destinations!", "success")
-    return redirect(f'/countries/{nicename}')
+
+    #this doesn't seem to work
+    if new_dest.user not in g.user.destinations and new_dest.country_name not in g.user.destinations:
+        db.session.add(new_dest)
+        db.session.commit()
+        flash(f"Added {nicename} to your dream destinations list!", "success")
+        return redirect(f'/countries/{nicename}')
+
+    else:
+        flash(f"{nicename} is already in your Dream Destinations list!", "danger")
+        return redirect(f'/countries/{nicename}')
 
 @app.route('/countries/<nicename>/remove-dream-dest', methods=["POST"])
 def remove_dreamdest(nicename):
     '''Removing a destination from your list'''
 
     dream_destination = Destination.query.get_or_404(nicename)
+    
+    dream_destination.country_name = nicename
     g.user.destinations.remove(dream_destination)
     db.session.commit()
     flash("This destination has been removed from your list", "danger")
@@ -283,7 +287,7 @@ def add_done(nicename):
     )
     db.session.add(visited_dest)
     db.session.commit()
-    flash("Added to your been there list!", "success")
+    flash(f"Added {nicename} to your been there list!", "success")
     return redirect(f'/countries/{nicename}')
 
 ### Error Handlers
