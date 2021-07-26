@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col .col-lg"
             <p>The capital of {{ country.name }} is {{ country.capital }}. 
-            They speak {{ country.languages[0].name }} and use the {{ country.currencies[0].name }}.</p>
+            They speak {{ country.languages }} and use the {{ country.currencies }}.</p>
             <div class="col .col-sm">
                 <form method="POST", action="/countries/{{ country.name }}/add-dream-dest">
                     <button type="submit" class="btn" style= "background-color: #4287f5" id="add-dream-dest">
@@ -36,7 +36,7 @@
      
             <h2>Things to do in {{ country.capital }}:</h2>
             {% for poi in pois %}
-            <div class="card text-white bg-primary mb-5" style="max-width: 50rem;">
+            <div class="card text-black bg-light mb-5" style="max-width: 50rem;">
                 <div class="card-header">Category: {{ poi.category }}</div>
                 <div class="card-body">
                     <h5 class="card-title">{{ poi.name }}</h5>
@@ -45,12 +45,13 @@
                        <button type="button" class="btn btn-secondary btn-sm tag-button">{{ tag }}</button>     
                         {% endfor %}
                    </h6>
+                </div>
             </div>
             {% endfor %}
   
             <h2>Tours in {{ country.capital }}:</h2>
             {% for tour in tours %}
-            <div class="card text-white bg-primary mb-5"  style="width: 50rem;">
+            <div class="card text-black bg-light mb-5"  style="width: 50rem;">
                 <div class="card-body">
                     <img src="{{ tour.pictures[0] }}" class="tour-pic"></img>
                     <h5 class="card-title">{{ tour.name }}</h5>

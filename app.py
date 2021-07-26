@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, jsonify, flash, session, g
 from werkzeug.utils import redirect
 from models import db, connect_db, User, Country, Unesco, Destination, VisitedCountry
 from forms import SignUpForm, LoginForm
+import json
+
+import config
 
 from sqlalchemy.exc import IntegrityError
 
@@ -12,7 +15,7 @@ from pprint import pprint
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = "MissMillieIsGood"
+app.config['SECRET_KEY'] = config.secret_key
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///travel-app'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
@@ -26,12 +29,12 @@ app.config['SQLALCHEMY_ECHO'] = True
 ### prod key
 
 amadeus = Client(
-    client_id='xASzeerH5RXb2vb0ZJKdTCngmK6mI0Ur',
-    client_secret='zAfkOnTUieumHNmo',
-    hostname='production'
+    client_id = config.client_id,
+    client_secret=config.client_secret,
+    hostname=config.hostname
 )
 
-geocode_key = '31bce992a33045daadc50ea7e0902774'
+geocode_key = config.geocode
 geocoder = OpenCageGeocode(geocode_key)
 
 CURR_USER_KEY = "curr_user"
@@ -81,6 +84,7 @@ def show_countries():
 @app.route('/countries/<nicename>')
 def show_country(nicename):
     country = Country.query.get(nicename)
+
     country_search = rapi.get_countries_by_name(nicename, 
                                         filters=["name", 
                                         "capital", 
@@ -89,15 +93,31 @@ def show_country(nicename):
                                         "languages"])
     cap_country = (f'{country_search[0].capital}, {country_search[0].name}')
     coords = geocoder.geocode(cap_country)
-    safety_rating = amadeus.safety.safety_rated_locations.get(latitude=coords[0]['geometry']['lat'],
-                                                              longitude=coords[0]['geometry']['lng'])
-    pois = amadeus.reference_data.locations.points_of_interest.get(latitude=coords[0]['geometry']['lat'],
-                                                              longitude=coords[0]['geometry']['lng'])
-    tours = amadeus.shopping.activities.get(latitude=coords[0]['geometry']['lat'],
-                                            longitude=coords[0]['geometry']['lng'])
+    
+    if country.lat == "None" or country.lng == "None":
+        country.lat = coords[0]['geometry']['lat']
+        country.lng = coords[0]['geometry']['lng']
+        db.session.commit()
+
+    if country.safety_rating == "None": 
+        country.safety_rating = json.dumps(amadeus.safety.safety_rated_locations.get(latitude=country.lat,
+                                                            longitude=country.lng).data)
+    if country.pois == "None": 
+        country.pois = json.dumps(amadeus.reference_data.locations.points_of_interest.get(latitude=country.lat,
+                                                           longitude=country.lng).data)
+    if country.tours == "None": 
+        country.tours = json.dumps(amadeus.shopping.activities.get(latitude=country.lat,
+                                            longitude=country.lng).data)
+    
+    print("***************")
+    print(country)
+    print(country.safety_rating)
+    db.session.commit()
+    
     return render_template('country.html', country=country_search[0], 
-                                        safety_ratings=safety_rating.data,
-                                        pois=pois.data, tours=tours.data)
+                                        safety_ratings=json.loads(country.safety_rating),
+                                        pois=json.loads(country.pois), tours=json.loads(country.tours))
+
 
 @app.route('/country')
 def country_page():
@@ -127,7 +147,7 @@ def sign_up():
             user = User.signup(
                 username = form.username.data,
                 password = form.password.data,
-                img_url = form.img_url.data,
+                img_url = form.img_url.data or User.img_url.default.arg,
                 bio = form.bio.data
             )
             db.session.add(user)
@@ -166,7 +186,7 @@ def login_user():
 @app.route('/logout')
 def logout_user():
     session.pop(CURR_USER_KEY)
-    flash("You have logged out.")
+    flash("You have logged out.", "success")
     return redirect('/')
 
 ## USER PAGE
@@ -223,7 +243,7 @@ def add_done(nicename):
     )
     db.session.add(visited_dest)
     db.session.commit()
-    flash("Added to your been there list!", "sucess")
+    flash("Added to your been there list!", "success")
     return redirect(f'/countries/{nicename}')
 
 ### Error Handlers

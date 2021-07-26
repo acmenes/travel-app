@@ -14,7 +14,7 @@ class User(db.Model):
 
     username = db.Column(db.String(20), nullable=False, unique=True, primary_key=True)
     password = db.Column(db.Text, nullable=False)
-    img_url = db.Column(db.String)
+    img_url = db.Column(db.String, default="/static/images/default-pic.png")
     bio = db.Column(db.String(150))
 
     destinations = db.relationship('Destination')
@@ -54,6 +54,12 @@ class Country(db.Model):
     name = db.Column(db.String)
     nicename = db.Column(db.String, primary_key=True)
     iso3 = db.Column(db.String)
+    safety_rating = db.Column(db.String, nullable=True)
+    pois = db.Column(db.String, nullable=True)
+    tours = db.Column(db.String, nullable=True)
+    lat = db.Column(db.String, nullable=True)
+    lng = db.Column(db.String, nullable=True)
+
 
 class Unesco(db.Model):
     '''Using this list, share a list of UNESCO sites in each country'''

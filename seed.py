@@ -7,7 +7,7 @@ from models import User, Country, Unesco, Destination, VisitedCountry
 db.drop_all()
 db.create_all()
 
-with open('generator/country_database.csv') as countries:
+with open('generator/countries.csv') as countries:
     db.session.bulk_insert_mappings(Country, DictReader(countries))
 
 # having trouble getting this to work

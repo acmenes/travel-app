@@ -1,1 +1,241 @@
-"AF|Afghanistan","AL|Albania","DZ|Algeria","AS|American Samoa","AD|Andorra","AO|Angola","AI|Anguilla","AQ|Antarctica","AG|Antigua And Barbuda","AR|Argentina","AM|Armenia","AW|Aruba","AU|Australia","AT|Austria","AZ|Azerbaijan","BS|Bahamas","BH|Bahrain","BD|Bangladesh","BB|Barbados","BY|Belarus","BE|Belgium","BZ|Belize","BJ|Benin","BM|Bermuda","BT|Bhutan","BO|Bolivia","BA|Bosnia And Herzegovina","BW|Botswana","BV|Bouvet Island","BR|Brazil","IO|British Indian Ocean Territory","BN|Brunei Darussalam","BG|Bulgaria","BF|Burkina Faso","BI|Burundi","KH|Cambodia","CM|Cameroon","CA|Canada","CV|Cape Verde","KY|Cayman Islands","CF|Central African Republic","TD|Chad","CL|Chile","CN|China","CX|Christmas Island","CC|Cocos (keeling) Islands","CO|Colombia","KM|Comoros","CG|Congo","CD|Congo, The Democratic Republic Of The","CK|Cook Islands","CR|Costa Rica","CI|Cote D'ivoire","HR|Croatia","CU|Cuba","CY|Cyprus","CZ|Czech Republic","DK|Denmark","DJ|Djibouti","DM|Dominica","DO|Dominican Republic","TP|East Timor","EC|Ecuador","EG|Egypt","SV|El Salvador","GQ|Equatorial Guinea","ER|Eritrea","EE|Estonia","ET|Ethiopia","FK|Falkland Islands (malvinas)","FO|Faroe Islands","FJ|Fiji","FI|Finland","FR|France","GF|French Guiana","PF|French Polynesia","TF|French Southern Territories","GA|Gabon","GM|Gambia","GE|Georgia","DE|Germany","GH|Ghana","GI|Gibraltar","GR|Greece","GL|Greenland","GD|Grenada","GP|Guadeloupe","GU|Guam","GT|Guatemala","GN|Guinea","GW|Guinea-bissau","GY|Guyana","HT|Haiti","HM|Heard Island And Mcdonald Islands","VA|Holy See (vatican City State)","HN|Honduras","HK|Hong Kong","HU|Hungary","IS|Iceland","IN|India","ID|Indonesia","IR|Iran, Islamic Republic Of","IQ|Iraq","IE|Ireland","IL|Israel","IT|Italy","JM|Jamaica","JP|Japan","JO|Jordan","KZ|Kazakstan","KE|Kenya","KI|Kiribati","KP|Korea, Democratic People's Republic Of","KR|Korea, Republic Of","KV|Kosovo","KW|Kuwait","KG|Kyrgyzstan","LA|Lao People's Democratic Republic","LV|Latvia","LB|Lebanon","LS|Lesotho","LR|Liberia","LY|Libyan Arab Jamahiriya","LI|Liechtenstein","LT|Lithuania","LU|Luxembourg","MO|Macau","MK|Macedonia, The Former Yugoslav Republic Of","MG|Madagascar","MW|Malawi","MY|Malaysia","MV|Maldives","ML|Mali","MT|Malta","MH|Marshall Islands","MQ|Martinique","MR|Mauritania","MU|Mauritius","YT|Mayotte","MX|Mexico","FM|Micronesia, Federated States Of","MD|Moldova, Republic Of","MC|Monaco","MN|Mongolia","MS|Montserrat","ME|Montenegro","MA|Morocco","MZ|Mozambique","MM|Myanmar","NA|Namibia","NR|Nauru","NP|Nepal","NL|Netherlands","AN|Netherlands Antilles","NC|New Caledonia","NZ|New Zealand","NI|Nicaragua","NE|Niger","NG|Nigeria","NU|Niue","NF|Norfolk Island","MP|Northern Mariana Islands","NO|Norway","OM|Oman","PK|Pakistan","PW|Palau","PS|Palestinian Territory, Occupied","PA|Panama","PG|Papua New Guinea","PY|Paraguay","PE|Peru","PH|Philippines","PN|Pitcairn","PL|Poland","PT|Portugal","PR|Puerto Rico","QA|Qatar","RE|Reunion","RO|Romania","RU|Russian Federation","RW|Rwanda","SH|Saint Helena","KN|Saint Kitts And Nevis","LC|Saint Lucia","PM|Saint Pierre And Miquelon","VC|Saint Vincent And The Grenadines","WS|Samoa","SM|San Marino","ST|Sao Tome And Principe","SA|Saudi Arabia","SN|Senegal","RS|Serbia","SC|Seychelles","SL|Sierra Leone","SG|Singapore","SK|Slovakia","SI|Slovenia","SB|Solomon Islands","SO|Somalia","ZA|South Africa","GS|South Georgia And The South Sandwich Islands","ES|Spain","LK|Sri Lanka","SD|Sudan","SR|Suriname","SJ|Svalbard And Jan Mayen","SZ|Swaziland","SE|Sweden","CH|Switzerland","SY|Syrian Arab Republic","TW|Taiwan, Province Of China","TJ|Tajikistan","TZ|Tanzania, United Republic Of","TH|Thailand","TG|Togo","TK|Tokelau","TO|Tonga","TT|Trinidad And Tobago","TN|Tunisia","TR|Turkey","TM|Turkmenistan","TC|Turks And Caicos Islands","TV|Tuvalu","UG|Uganda","UA|Ukraine","AE|United Arab Emirates","GB|United Kingdom","US|United States","UM|United States Minor Outlying Islands","UY|Uruguay","UZ|Uzbekistan","VU|Vanuatu","VE|Venezuela","VN|Viet Nam","VG|Virgin Islands, British","VI|Virgin Islands, U.s.","WF|Wallis And Futuna","EH|Western Sahara","YE|Yemen","ZM|Zambia","ZW|Zimbabwe
+id,iso,name,nicename,iso3,safety_rating,pois,tours,lat,lng
+1,AF,AFGHANISTAN,Afghanistan,AFG,None,None,None,None,None
+2,AL,ALBANIA,Albania,ALB,None,None,None,None,None
+3,DZ,ALGERIA,Algeria,DZA,None,None,None,None,None
+4,AS,AMERICAN SAMOA,American Samoa,ASM,None,None,None,None,None
+5,AD,ANDORRA,Andorra,AND,None,None,None,None,None
+6,AO,ANGOLA,Angola,AGO,None,None,None,None,None
+7,AI,ANGUILLA,Anguilla,AIA,None,None,None,None,None
+8,AQ,ANTARCTICA,Antarctica,NULL,None,None,None,None,None
+9,AG,ANTIGUA AND BARBUDA,Antigua and Barbuda,ATG,None,None,None,None,None
+10,AR,ARGENTINA,Argentina,ARG,None,None,None,None,None
+11,AM,ARMENIA,Armenia,ARM,None,None,None,None,None
+12,AW,ARUBA,Aruba,ABW,None,None,None,None,None
+13,AU,AUSTRALIA,Australia,AUS,None,None,None,None,None
+14,AT,AUSTRIA,Austria,AUT,None,None,None,None,None
+15,AZ,AZERBAIJAN,Azerbaijan,AZE,None,None,None,None,None
+16,BS,BAHAMAS,Bahamas,BHS,None,None,None,None,None
+17,BH,BAHRAIN,Bahrain,BHR,None,None,None,None,None
+18,BD,BANGLADESH,Bangladesh,BGD,None,None,None,None,None
+19,BB,BARBADOS,Barbados,BRB,None,None,None,None,None
+20,BY,BELARUS,Belarus,BLR,None,None,None,None,None
+21,BE,BELGIUM,Belgium,BEL,None,None,None,None,None
+22,BZ,BELIZE,Belize,BLZ,None,None,None,None,None
+23,BJ,BENIN,Benin,BEN,None,None,None,None,None
+24,BM,BERMUDA,Bermuda,BMU,None,None,None,None,None
+25,BT,BHUTAN,Bhutan,BTN,None,None,None,None,None
+26,BO,BOLIVIA,Bolivia,BOL,None,None,None,None,None
+27,BA,BOSNIA AND HERZEGOVINA,Bosnia and Herzegovina,BIH,None,None,None,None,None
+28,BW,BOTSWANA,Botswana,BWA,None,None,None,None,None
+29,BV,BOUVET ISLAND,Bouvet Island,NULL,None,None,None,None,None
+30,BR,BRAZIL,Brazil,BRA,None,None,None,None,None
+31,IO,BRITISH INDIAN OCEAN TERRITORY,British Indian Ocean Territory,NULL,None,None,None,None,None
+32,BN,BRUNEI DARUSSALAM,Brunei Darussalam,BRN,None,None,None,None,None
+33,BG,BULGARIA,Bulgaria,BGR,None,None,None,None,None
+34,BF,BURKINA FASO,Burkina Faso,BFA,None,None,None,None,None
+35,BI,BURUNDI,Burundi,BDI,None,None,None,None,None
+36,KH,CAMBODIA,Cambodia,KHM,None,None,None,None,None
+37,CM,CAMEROON,Cameroon,CMR,None,None,None,None,None
+38,CA,CANADA,Canada,CAN,None,None,None,None,None
+39,CV,CAPE VERDE,Cape Verde,CPV,None,None,None,None,None
+40,KY,CAYMAN ISLANDS,Cayman Islands,CYM,None,None,None,None,None
+41,CF,CENTRAL AFRICAN REPUBLIC,Central African Republic,CAF,None,None,None,None,None
+42,TD,CHAD,Chad,TCD,None,None,None,None,None
+43,CL,CHILE,Chile,CHL,None,None,None,None,None
+44,CN,CHINA,China,CHN,None,None,None,None,None
+45,CX,CHRISTMAS ISLAND,Christmas Island,NULL,None,None,None,None,None
+46,CC,COCOS (KEELING) ISLANDS,Cocos (Keeling) Islands,NULL,None,None,None,None,None
+47,CO,COLOMBIA,Colombia,COL,None,None,None,None,None
+48,KM,COMOROS,Comoros,COM,None,None,None,None,None
+49,CG,CONGO,Congo,COG,None,None,None,None,None
+50,CD,"CONGO, THE DEMOCRATIC REPUBLIC OF THE","Congo, the Democratic Republic of the",COD,None,None,None,None,None
+51,CK,COOK ISLANDS,Cook Islands,COK,None,None,None,None,None
+52,CR,COSTA RICA,Costa Rica,CRI,None,None,None,None,None
+53,CI,COTE D'IVOIRE,Cote D'Ivoire,CIV,None,None,None,None,None
+54,HR,CROATIA,Croatia,HRV,None,None,None,None,None
+55,CU,CUBA,Cuba,CUB,None,None,None,None,None
+56,CY,CYPRUS,Cyprus,CYP,None,None,None,None,None
+57,CZ,CZECH REPUBLIC,Czech Republic,CZE,None,None,None,None,None
+58,DK,DENMARK,Denmark,DNK,None,None,None,None,None
+59,DJ,DJIBOUTI,Djibouti,DJI,None,None,None,None,None
+60,DM,DOMINICA,Dominica,DMA,None,None,None,None,None
+61,DO,DOMINICAN REPUBLIC,Dominican Republic,DOM,None,None,None,None,None
+62,EC,ECUADOR,Ecuador,ECU,None,None,None,None,None
+63,EG,EGYPT,Egypt,EGY,None,None,None,None,None
+64,SV,EL SALVADOR,El Salvador,SLV,None,None,None,None,None
+65,GQ,EQUATORIAL GUINEA,Equatorial Guinea,GNQ,None,None,None,None,None
+66,ER,ERITREA,Eritrea,ERI,None,None,None,None,None
+67,EE,ESTONIA,Estonia,EST,None,None,None,None,None
+68,ET,ETHIOPIA,Ethiopia,ETH,None,None,None,None,None
+69,FK,FALKLAND ISLANDS (MALVINAS),Falkland Islands (Malvinas),FLK,None,None,None,None,None
+70,FO,FAROE ISLANDS,Faroe Islands,FRO,None,None,None,None,None
+71,FJ,FIJI,Fiji,FJI,None,None,None,None,None
+72,FI,FINLAND,Finland,FIN,None,None,None,None,None
+73,FR,FRANCE,France,FRA,None,None,None,None,None
+74,GF,FRENCH GUIANA,French Guiana,GUF,None,None,None,None,None
+75,PF,FRENCH POLYNESIA,French Polynesia,PYF,None,None,None,None,None
+76,TF,FRENCH SOUTHERN TERRITORIES,French Southern Territories,NULL,None,None,None,None,None
+77,GA,GABON,Gabon,GAB,None,None,None,None,None
+78,GM,GAMBIA,Gambia,GMB,None,None,None,None,None
+79,GE,GEORGIA,Georgia,GEO,None,None,None,None,None
+80,DE,GERMANY,Germany,DEU,None,None,None,None,None
+81,GH,GHANA,Ghana,GHA,None,None,None,None,None
+82,GI,GIBRALTAR,Gibraltar,GIB,None,None,None,None,None
+83,GR,GREECE,Greece,GRC,None,None,None,None,None
+84,GL,GREENLAND,Greenland,GRL,None,None,None,None,None
+85,GD,GRENADA,Grenada,GRD,None,None,None,None,None
+86,GP,GUADELOUPE,Guadeloupe,GLP,None,None,None,None,None
+87,GU,GUAM,Guam,GUM,None,None,None,None,None
+88,GT,GUATEMALA,Guatemala,GTM,None,None,None,None,None
+89,GN,GUINEA,Guinea,GIN,None,None,None,None,None
+90,GW,GUINEA-BISSAU,Guinea-Bissau,GNB,None,None,None,None,None
+91,GY,GUYANA,Guyana,GUY,None,None,None,None,None
+92,HT,HAITI,Haiti,HTI,None,None,None,None,None
+93,HM,HEARD ISLAND AND MCDONALD ISLANDS,Heard Island and Mcdonald Islands,NULL,None,None,None,None,None
+94,VA,HOLY SEE (VATICAN CITY STATE),Holy See (Vatican City State),VAT,None,None,None,None,None
+95,HN,HONDURAS,Honduras,HND,None,None,None,None,None
+96,HK,HONG KONG,Hong Kong,HKG,None,None,None,None,None
+97,HU,HUNGARY,Hungary,HUN,None,None,None,None,None
+98,IS,ICELAND,Iceland,ISL,None,None,None,None,None
+99,IN,INDIA,India,IND,None,None,None,None,None
+100,ID,INDONESIA,Indonesia,IDN,None,None,None,None,None
+101,IR,"IRAN, ISLAMIC REPUBLIC OF","Iran, Islamic Republic of",IRN,None,None,None,None,None
+102,IQ,IRAQ,Iraq,IRQ,None,None,None,None,None
+103,IE,IRELAND,Ireland,IRL,None,None,None,None,None
+104,IL,ISRAEL,Israel,ISR,None,None,None,None,None
+105,IT,ITALY,Italy,ITA,None,None,None,None,None
+106,JM,JAMAICA,Jamaica,JAM,None,None,None,None,None
+107,JP,JAPAN,Japan,JPN,None,None,None,None,None
+108,JO,JORDAN,Jordan,JOR,None,None,None,None,None
+109,KZ,KAZAKHSTAN,Kazakhstan,KAZ,None,None,None,None,None
+110,KE,KENYA,Kenya,KEN,None,None,None,None,None
+111,KI,KIRIBATI,Kiribati,KIR,None,None,None,None,None
+112,KP,"KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF","Korea, Democratic People's Republic of",PRK,None,None,None,None,None
+113,KR,"KOREA, REPUBLIC OF","Korea, Republic of",KOR,None,None,None,None,None
+114,KW,KUWAIT,Kuwait,KWT,None,None,None,None,None
+115,KG,KYRGYZSTAN,Kyrgyzstan,KGZ,None,None,None,None,None
+116,LA,LAO PEOPLE'S DEMOCRATIC REPUBLIC,Lao People's Democratic Republic,LAO,None,None,None,None,None
+117,LV,LATVIA,Latvia,LVA,None,None,None,None,None
+118,LB,LEBANON,Lebanon,LBN,None,None,None,None,None
+119,LS,LESOTHO,Lesotho,LSO,None,None,None,None,None
+120,LR,LIBERIA,Liberia,LBR,None,None,None,None,None
+121,LY,LIBYAN ARAB JAMAHIRIYA,Libyan Arab Jamahiriya,LBY,None,None,None,None,None
+122,LI,LIECHTENSTEIN,Liechtenstein,LIE,None,None,None,None,None
+123,LT,LITHUANIA,Lithuania,LTU,None,None,None,None,None
+124,LU,LUXEMBOURG,Luxembourg,LUX,None,None,None,None,None
+125,MO,MACAO,Macao,MAC,None,None,None,None,None
+126,MK,"MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF","Macedonia, the Former Yugoslav Republic of",MKD,None,None,None,None,None
+127,MG,MADAGASCAR,Madagascar,MDG,None,None,None,None,None
+128,MW,MALAWI,Malawi,MWI,None,None,None,None,None
+129,MY,MALAYSIA,Malaysia,MYS,None,None,None,None,None
+130,MV,MALDIVES,Maldives,MDV,None,None,None,None,None
+131,ML,MALI,Mali,MLI,None,None,None,None,None
+132,MT,MALTA,Malta,MLT,None,None,None,None,None
+133,MH,MARSHALL ISLANDS,Marshall Islands,MHL,None,None,None,None,None
+134,MQ,MARTINIQUE,Martinique,MTQ,None,None,None,None,None
+135,MR,MAURITANIA,Mauritania,MRT,None,None,None,None,None
+136,MU,MAURITIUS,Mauritius,MUS,None,None,None,None,None
+137,YT,MAYOTTE,Mayotte,NULL,None,None,None,None,None
+138,MX,MEXICO,Mexico,MEX,None,None,None,None,None
+139,FM,"MICRONESIA, FEDERATED STATES OF","Micronesia, Federated States of",FSM,None,None,None,None,None
+140,MD,"MOLDOVA, REPUBLIC OF","Moldova, Republic of",MDA,None,None,None,None,None
+141,MC,MONACO,Monaco,MCO,None,None,None,None,None
+142,MN,MONGOLIA,Mongolia,MNG,None,None,None,None,None
+143,MS,MONTSERRAT,Montserrat,MSR,None,None,None,None,None
+144,MA,MOROCCO,Morocco,MAR,None,None,None,None,None
+145,MZ,MOZAMBIQUE,Mozambique,MOZ,None,None,None,None,None
+146,MM,MYANMAR,Myanmar,MMR,None,None,None,None,None
+147,NA,NAMIBIA,Namibia,NAM,None,None,None,None,None
+148,NR,NAURU,Nauru,NRU,None,None,None,None,None
+149,NP,NEPAL,Nepal,NPL,None,None,None,None,None
+150,NL,NETHERLANDS,Netherlands,NLD,None,None,None,None,None
+151,AN,NETHERLANDS ANTILLES,Netherlands Antilles,ANT,None,None,None,None,None
+152,NC,NEW CALEDONIA,New Caledonia,NCL,None,None,None,None,None
+153,NZ,NEW ZEALAND,New Zealand,NZL,None,None,None,None,None
+154,NI,NICARAGUA,Nicaragua,NIC,None,None,None,None,None
+155,NE,NIGER,Niger,NER,None,None,None,None,None
+156,NG,NIGERIA,Nigeria,NGA,None,None,None,None,None
+157,NU,NIUE,Niue,NIU,None,None,None,None,None
+158,NF,NORFOLK ISLAND,Norfolk Island,NFK,None,None,None,None,None
+159,MP,NORTHERN MARIANA ISLANDS,Northern Mariana Islands,MNP,None,None,None,None,None
+160,NO,NORWAY,Norway,NOR,None,None,None,None,None
+161,OM,OMAN,Oman,OMN,None,None,None,None,None
+162,PK,PAKISTAN,Pakistan,PAK,None,None,None,None,None
+163,PW,PALAU,Palau,PLW,None,None,None,None,None
+164,PS,"PALESTINIAN TERRITORY, OCCUPIED","Palestinian Territory, Occupied",NULL,None,None,None,None,None
+165,PA,PANAMA,Panama,PAN,None,None,None,None,None
+166,PG,PAPUA NEW GUINEA,Papua New Guinea,PNG,None,None,None,None,None
+167,PY,PARAGUAY,Paraguay,PRY,None,None,None,None,None
+168,PE,PERU,Peru,PER,None,None,None,None,None
+169,PH,PHILIPPINES,Philippines,PHL,None,None,None,None,None
+170,PN,PITCAIRN,Pitcairn,PCN,None,None,None,None,None
+171,PL,POLAND,Poland,POL,None,None,None,None,None
+172,PT,PORTUGAL,Portugal,PRT,None,None,None,None,None
+173,PR,PUERTO RICO,Puerto Rico,PRI,None,None,None,None,None
+174,QA,QATAR,Qatar,QAT,None,None,None,None,None
+175,RE,REUNION,Reunion,REU,None,None,None,None,None
+176,RO,ROMANIA,Romania,ROM,None,None,None,None,None
+177,RU,RUSSIAN FEDERATION,Russia,RUS,None,None,None,None,None
+178,RW,RWANDA,Rwanda,RWA,None,None,None,None,None
+179,SH,SAINT HELENA,Saint Helena,SHN,None,None,None,None,None
+180,KN,SAINT KITTS AND NEVIS,Saint Kitts and Nevis,KNA,None,None,None,None,None
+181,LC,SAINT LUCIA,Saint Lucia,LCA,None,None,None,None,None
+182,PM,SAINT PIERRE AND MIQUELON,Saint Pierre and Miquelon,SPM,None,None,None,None,None
+183,VC,SAINT VINCENT AND THE GRENADINES,Saint Vincent and the Grenadines,VCT,None,None,None,None,None
+184,WS,SAMOA,Samoa,WSM,None,None,None,None,None
+185,SM,SAN MARINO,San Marino,SMR,None,None,None,None,None
+186,ST,SAO TOME AND PRINCIPE,Sao Tome and Principe,STP,None,None,None,None,None
+187,SA,SAUDI ARABIA,Saudi Arabia,SAU,None,None,None,None,None
+188,SC,SCOTLAND,Scotland,SCT,None,None,None,None,None
+189,SN,SENEGAL,Senegal,SEN,None,None,None,None,None
+190,CS,SERBIA AND MONTENEGRO,Serbia and Montenegro,NULL,None,None,None,None,None
+191,SC,SEYCHELLES,Seychelles,SYC,None,None,None,None,None
+192,SL,SIERRA LEONE,Sierra Leone,SLE,None,None,None,None,None
+193,SG,SINGAPORE,Singapore,SGP,None,None,None,None,None
+194,SK,SLOVAKIA,Slovakia,SVK,None,None,None,None,None
+195,SI,SLOVENIA,Slovenia,SVN,None,None,None,None,None
+196,SB,SOLOMON ISLANDS,Solomon Islands,SLB,None,None,None,None,None
+197,SO,SOMALIA,Somalia,SOM,None,None,None,None,None
+198,ZA,SOUTH AFRICA,South Africa,ZAF,None,None,None,None,None
+199,GS,SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS,South Georgia and the South Sandwich Islands,SGS,None,None,None,None,None
+200,ES,SPAIN,Spain,ESP,None,None,None,None,None
+201,LK,SRI LANKA,Sri Lanka,LKA,None,None,None,None,None
+202,SD,SUDAN,Sudan,SDN,None,None,None,None,None
+203,SR,SURINAME,Suriname,SUR,None,None,None,None,None
+204,SJ,SVALBARD AND JAN MAYEN,Svalbard and Jan Mayen,SJM,None,None,None,None,None
+205,SZ,SWAZILAND,Swaziland,SWZ,None,None,None,None,None
+206,SE,SWEDEN,Sweden,SWE,None,None,None,None,None
+207,CH,SWITZERLAND,Switzerland,CHE,None,None,None,None,None
+208,SY,SYRIAN ARAB REPUBLIC,Syrian Arab Republic,SYR,None,None,None,None,None
+209,TW,"TAIWAN, PROVINCE OF CHINA","Taiwan, Province of China",TWN,None,None,None,None,None
+210,TJ,TAJIKISTAN,Tajikistan,TJK,None,None,None,None,None
+211,TZ,"TANZANIA, UNITED REPUBLIC OF","Tanzania, United Republic of",TZA,None,None,None,None,None
+212,TH,THAILAND,Thailand,THA,None,None,None,None,None
+213,TL,TIMOR-LESTE,Timor-Leste,NULL,None,None,None,None,None
+214,TG,TOGO,Togo,TGO,None,None,None,None,None
+215,TK,TOKELAU,Tokelau,TKL,None,None,None,None,None
+216,TO,TONGA,Tonga,TON,None,None,None,None,None
+217,TT,TRINIDAD AND TOBAGO,Trinidad and Tobago,TTO,None,None,None,None,None
+218,TN,TUNISIA,Tunisia,TUN,None,None,None,None,None
+219,TR,TURKEY,Turkey,TUR,None,None,None,None,None
+220,TM,TURKMENISTAN,Turkmenistan,TKM,None,None,None,None,None
+221,TC,TURKS AND CAICOS ISLANDS,Turks and Caicos Islands,TCA,None,None,None,None,None
+222,TV,TUVALU,Tuvalu,TUV,None,None,None,None,None
+223,UG,UGANDA,Uganda,UGA,None,None,None,None,None
+224,UA,UKRAINE,Ukraine,UKR,None,None,None,None,None
+225,AE,UNITED ARAB EMIRATES,United Arab Emirates,ARE,None,None,None,None,None
+226,GB,UNITED KINGDOM,United Kingdom,GBR,None,None,None,None,None
+227,US,UNITED STATES,United States,USA,None,None,None,None,None
+228,UM,UNITED STATES MINOR OUTLYING ISLANDS,United States Minor Outlying Islands,USM,None,None,None,None,None
+229,UY,URUGUAY,Uruguay,URY,None,None,None,None,None
+230,UZ,UZBEKISTAN,Uzbekistan,UZB,None,None,None,None,None
+231,VU,VANUATU,Vanuatu,VUT,None,None,None,None,None
+232,VE,VENEZUELA,Venezuela,VEN,None,None,None,None,None
+233,VN,VIET NAM,Viet Nam,VNM,None,None,None,None,None
+234,VG,"VIRGIN ISLANDS, BRITISH","Virgin Islands, British",VGB,None,None,None,None,None
+235,VI,"VIRGIN ISLANDS, U.S.","Virgin Islands, U.s.",VIR,None,None,None,None,None
+236,WF,WALLIS AND FUTUNA,Wallis and Futuna,WLF,None,None,None,None,None
+237,EH,WESTERN SAHARA,Western Sahara,ESH,None,None,None,None,None
+238,YE,YEMEN,Yemen,YEM,None,None,None,None,None
+239,ZM,ZAMBIA,Zambia,ZMB,None,None,None,None,None
+240,ZW,ZIMBABWE,Zimbabwe,ZIM,None,None,None,None,None
