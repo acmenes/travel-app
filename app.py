@@ -85,7 +85,7 @@ def show_countries():
 def show_country(nicename):
     country = Country.query.get(nicename)
 
-    country_search = rapi.get_countries_by_name("Bulgaria", 
+    country_search = rapi.get_countries_by_name(nicename, 
                                         filters=["name", 
                                         "capital", 
                                         "flag", 
