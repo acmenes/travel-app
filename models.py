@@ -14,7 +14,7 @@ class User(db.Model):
 
     username = db.Column(db.String(20), nullable=False, unique=True, primary_key=True)
     password = db.Column(db.Text, nullable=False)
-    img_url = db.Column(db.String, default="/static/images/default-pic.png")
+    img_url = db.Column(db.String, default="/static/img/default-pic.png")
     bio = db.Column(db.String(150))
 
     destinations = db.relationship('Destination')

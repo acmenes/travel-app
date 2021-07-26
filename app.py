@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, flash, session, g
 from werkzeug.utils import redirect
 from models import db, connect_db, User, Country, Unesco, Destination, VisitedCountry
-from forms import SignUpForm, LoginForm
+from forms import EditUserForm, SignUpForm, LoginForm
 import json
 
 import config
@@ -85,7 +85,7 @@ def show_countries():
 def show_country(nicename):
     country = Country.query.get(nicename)
 
-    country_search = rapi.get_countries_by_name(nicename, 
+    country_search = rapi.get_countries_by_name("Bulgaria", 
                                         filters=["name", 
                                         "capital", 
                                         "flag", 
@@ -117,7 +117,6 @@ def show_country(nicename):
     return render_template('country.html', country=country_search[0], 
                                         safety_ratings=json.loads(country.safety_rating),
                                         pois=json.loads(country.pois), tours=json.loads(country.tours))
-
 
 @app.route('/country')
 def country_page():
@@ -199,6 +198,47 @@ def user_page(username):
     return render_template('user.html', user=user, 
                                         destinations=destinations, 
                                         visited_countries=visited_countries)
+
+@app.route('/users/<username>/edit-profile', methods=["GET", "POST"])
+def edit_profile(username):
+    '''Update the current user's profile'''
+    user = User.query.get_or_404(username)
+
+    form = EditUserForm()
+
+    if g.user == user:
+
+        if form.validate_on_submit():
+            user.username = form.username.data
+            user.bio = form.bio.data
+            user.img_url = form.img_url.data or User.img_url.default.arg
+            db.session.commit()
+            flash("Your profile has been updated!", "success")
+            return redirect(f'/users/{g.user.username}')
+
+        return render_template('edituser.html', user=user, form=form)
+    
+    else: 
+        flash("You cannot edit another user's profile.", "danger")
+        return redirect(f'/users/{g.user.username}')
+    
+
+@app.route('/users/<username>/delete-profile', methods=["GET", "POST"])
+def delete_profile(username):
+    '''Delete a user's Dream Destinations account'''
+
+    user = User.query.get_or_404(username)
+
+    if g.user == user:
+        do_logout()
+        db.session.delete(g.user)
+        db.session.commit()
+        flash("Sorry to see you go! Your account has been deleted", "success")
+        return redirect('/')
+    
+    else: 
+        flash("You cannot delete another user's profile!", "danger")
+        return redirect(f'/users/{g.user.username}')
 
 ### ADDING DESTINATIONS
 

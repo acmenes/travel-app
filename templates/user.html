@@ -22,7 +22,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="mb-0">My Dream Destinations</h5><a href="#" class="btn btn-link text-muted">Show all</a>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                     {% for destination in user.destinations %}
                         <div class="col-lg-6 mb-2 pr-lg-1">
                             <a href="/countries/{{ destination.country_name }}">{{ destination.country_name }}</a>
@@ -34,13 +34,24 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="mb-0">Places I've Visited</h5><a href="#" class="btn btn-link text-muted">Show all</a>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                     {% for visited_country in user.visited_countries %}
                         <div class="col-lg-6 mb-2 pr-lg-1">
                             <a href="/countries/{{ visited_country.country_name }}">{{ visited_country.country_name }}</a>
                         </div>
                     {% endfor %}
                 </div>
+                {% if user == g.user %}
+                <div class="row">
+                    <h5>Your Profile:</h5>
+                    <form action="{{ g.user.username }}/edit-profile">
+                        <button type="submit" class="btn btn-success">Edit Your Profile</button>
+                    </form>
+                      <form action="{{ g.user.username }}/delete-profile">
+                        <button type="submit" class="btn btn-danger">Delete Your Profile</button>
+                    </form>
+                </div>
+                {% endif%}
             </div>
         </div>
     </div>
