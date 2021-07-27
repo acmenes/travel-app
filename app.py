@@ -264,18 +264,25 @@ def add_dreamdest(nicename):
         flash(f"{nicename} is already in your Dream Destinations list!", "danger")
         return redirect(f'/countries/{nicename}')
 
-@app.route('/countries/<nicename>/remove-dream-dest', methods=["POST"])
-def remove_dreamdest(nicename):
-    '''Removing a destination from your list'''
+@app.route('/destinations/<id>/remove')
+def remove_desination(id):
+    '''Remove a destination from your Dream Destination List'''
 
-    dream_destination = Destination.query.get_or_404(nicename)
-    
-    dream_destination.country_name = nicename
+    dream_destination = Destination.query.get_or_404(id)
+
+    if not g.user:
+        flash('You cannot edit this list.', 'danger')
+        return redirect('/')
+
+    if g.user.username != dream_destination.user:
+        flash('You cannot edit this list.', 'danger')
+        return redirect('/')
+
     g.user.destinations.remove(dream_destination)
     db.session.commit()
-    flash("This destination has been removed from your list", "danger")
+    flash(f'{dream_destination.country_name} has been removed from your list', 'success')
 
-    return redirect(f'/countries/{nicename}')
+    return redirect(f'/users/{g.user.username}')
 
 
 @app.route('/countries/<nicename>/add-been-there', methods=["POST"])
