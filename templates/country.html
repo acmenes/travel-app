@@ -56,6 +56,9 @@
         </div>
             <div> <a name="pois"></a>
                 <h2>Things to do in {{ country.capital }}:</h2>
+                {% if pois|length == 0%}
+                <p>No points of interest found in {{ country.capital }}</p>
+                {% endif %}
                 {% for poi in pois %}
                 <div class="card text-black bg-light mb-5" style="max-width: 50rem;">
                     <div class="card-header">Category: {{ poi.category }}</div>
@@ -89,6 +92,7 @@
             <div> <a name="safety"></a>
                 <h2>Is {{ country.capital }} safe?:</h2>
                 <p><i>Safety ratings are presented on a scale of 1-100, with lower numbers being the safest and higher numbers being unsafe.</i></p>
+                {% if safety_ratings != None %}
                 {% for safety_rating in safety_ratings %}
                 <h6>Safety rating in {{safety_rating.name}}</h6>
                 <ul>
@@ -99,6 +103,9 @@
                     {% endfor %}
                 </ul>
                 {% endfor %}
+                {% else %}
+                <p>There is no data available at this time.</p>
+                {% endif %}
             </div>
     </div>
 </div>

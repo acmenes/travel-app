@@ -77,7 +77,7 @@ def home_page():
 @app.route('/countries')
 def show_countries():
 
-    countries = Country.query.all()
+    countries = Country.query.order_by(Country.nicename.asc()).all()
 
     return render_template('countries.html', countries=countries)
 
@@ -109,9 +109,6 @@ def show_country(nicename):
         country.tours = json.dumps(amadeus.shopping.activities.get(latitude=country.lat,
                                             longitude=country.lng).data)
     
-    print("***************")
-    print(country)
-    print(country.safety_rating)
     db.session.commit()
     
     return render_template('country.html', country=country_search[0], 
