@@ -68,9 +68,13 @@ def do_logout():
 
 @app.route('/')
 def home_page():
-    return render_template('home.html')
+    '''Home page for the app'''
 
-# use the geocode to connect to amadeus 
+    countries = Country.query.order_by(Country.nicename.asc()).all()
+
+    return render_template('home.html', countries=countries)
+
+
 
 ### CONUTRIES ROUTES
 
@@ -114,17 +118,11 @@ def show_country(nicename):
     return render_template('country.html', country=country_search[0], 
                                         safety_ratings=json.loads(country.safety_rating),
                                         pois=json.loads(country.pois), tours=json.loads(country.tours))
-
+   
 @app.route('/country')
 def country_page():
     # country_from_db = Country.query.get_or_404(country)
-    country_search = request.args["country-search"]
-    country = rapi.get_countries_by_name(country_search, 
-                                        filters=[country_search, 
-                                        "capital", 
-                                        "flag", 
-                                        "currencies",
-                                        "languages"])
+    # country_search = request.form.get('country-search')
     return redirect(f'/countries/{country_search}')
 
 @app.route('/unesco-sites')
@@ -300,7 +298,13 @@ def add_done(nicename):
 def page_not_found(e):
     '''For errors'''
 
-    return redirect('404.html'), 404
+    return render_template('404.html')
+
+@app.errorhandler(500)
+def other_error(e):
+    '''For errors'''
+
+    return render_template('404.html')
 
 ### TEST ROUTES ###
 
