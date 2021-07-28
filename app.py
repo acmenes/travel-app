@@ -120,7 +120,7 @@ def country_page():
     # country_from_db = Country.query.get_or_404(country)
     country_search = request.args["country-search"]
     country = rapi.get_countries_by_name(country_search, 
-                                        filters=["name", 
+                                        filters=[country_search, 
                                         "capital", 
                                         "flag", 
                                         "currencies",

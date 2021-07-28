@@ -8,7 +8,11 @@
             
     </div>
     <div class="row">
-        <div class="col .col-lg"
+        <div class="col .col-lg">
+            {% if country.capital == '' %}
+                <p>Looks like you found Antarctica. Beautiful... cold... the vast unknown. Populated by scientists and penguins. One time Metallica played here too!</p>
+            {% endif %}
+            {% if country.capital != '' %}
             <p>The capital of {{ country.name }} is {{ country.capital }}. 
             They speak 
             {% for key, value in country.languages[0].items() %}
@@ -16,14 +20,13 @@
                     {{ value }}
                 {% endif %}
             {% endfor %}
-        
             and use the 
             {% for key, value in country.currencies[0].items() %}
                 {% if key == 'name' %}
                     {{ value }}.
                 {% endif %}
             {% endfor %}</p>
-
+            {% endif %}
             <div class="col .col-sm">
                 {% if g.user %}
                 <form method="POST", action="/countries/{{ country.name }}/add-dream-dest">
@@ -54,6 +57,10 @@
         <div class="col .col-sm">
             <img src="{{ country.flag }}" class="img-fluid flag"></img>
         </div>
+             {% if country.capital == '' %}
+                <p>You can visit Antarctica for tens of thousands of dollars.</p>
+            {% endif %}
+            {% if country.capital != '' %}
             <div> <a name="pois"></a>
                 <h2>Things to do in {{ country.capital }}:</h2>
                 {% if pois|length == 0%}
@@ -107,6 +114,7 @@
                 <p>There is no data available at this time.</p>
                 {% endif %}
             </div>
+           {% endif %} 
     </div>
 </div>
 {% endblock %}
