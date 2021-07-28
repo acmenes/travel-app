@@ -85,6 +85,7 @@
                 {% if tours|length == 0%}
                 <p>No tours are available at this time.</p>
                 {% endif %}
+                {% if country.tours != None %}
                 {% for tour in tours %}
                 <div class="card text-black bg-light mb-5"  style="width: 50rem;">
                     <div class="card-body">
@@ -95,6 +96,7 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% endif %}
             </div>
             <div> <a name="safety"></a>
                 <h2>Is {{ country.capital }} safe?:</h2>

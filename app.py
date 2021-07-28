@@ -74,9 +74,7 @@ def home_page():
 
     return render_template('home.html', countries=countries)
 
-
-
-### CONUTRIES ROUTES
+### COUNTRIES ROUTES
 
 @app.route('/countries')
 def show_countries():
@@ -118,12 +116,6 @@ def show_country(nicename):
     return render_template('country.html', country=country_search[0], 
                                         safety_ratings=json.loads(country.safety_rating),
                                         pois=json.loads(country.pois), tours=json.loads(country.tours))
-   
-# @app.route('/country')
-# def country_page():
-#     # country_from_db = Country.query.get_or_404(country)
-#     country_search = request.args['all-countries']
-#     return redirect(f'/countries/{country_search}')
 
 @app.route('/unesco-sites')
 def unesco_sites():
@@ -242,22 +234,22 @@ def add_dreamdest(nicename):
     '''Adding a country to a user's dream destinations list'''
 
     country = Country.query.get_or_404(nicename)
+    user = User.query.get_or_404(g.user.username)
+
+    for destination in user.destinations:
+        if destination.country_name == country.nicename:
+            flash(f"{nicename} is already in your Dream Destinations list!", "danger")
+            return redirect(f'/countries/{nicename}')
 
     new_dest = Destination(
         user = g.user.username,
         country_name = country.nicename
     )
 
-    #this doesn't seem to work
-    if new_dest.user not in g.user.destinations and new_dest.country_name not in g.user.destinations:
-        db.session.add(new_dest)
-        db.session.commit()
-        flash(f"Added {nicename} to your dream destinations list!", "success")
-        return redirect(f'/countries/{nicename}')
-
-    else:
-        flash(f"{nicename} is already in your Dream Destinations list!", "danger")
-        return redirect(f'/countries/{nicename}')
+    db.session.add(new_dest)
+    db.session.commit()
+    flash(f"Added {nicename} to your dream destinations list!", "success")
+    return redirect(f'/countries/{nicename}')
 
 @app.route('/destinations/<id>/remove')
 def remove_desination(id):

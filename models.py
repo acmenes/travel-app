@@ -97,12 +97,16 @@ class Destination(db.Model):
     user = db.Column(db.String, db.ForeignKey('users.username'))
     country_name = db.Column(db.String, db.ForeignKey('countries.nicename'))
 
+    __table_args__ = (db.UniqueConstraint(user, country_name),)
+
 class VisitedCountry(db.Model):
 
     __tablename__ = "visited_countries"
 
     user = db.Column(db.String, db.ForeignKey('users.username'))
     country_name = db.Column(db.String, db.ForeignKey('countries.nicename'), primary_key=True)
+
+    __table_args__ = (db.UniqueConstraint(user, country_name),)
 
 def connect_db(app):
     '''Connect to the app'''
