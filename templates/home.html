@@ -6,8 +6,8 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
             <h1 class="display-4">Don't Just Dream of Traveling. Do It.</h1>
-            <form class="d-flex" id="search-countries" action="#">
-                 <input class="form-control" list="all-countries" id="country-search" placeholder="Where Do You Want To Go...?">
+            <form class="d-flex" id="search-countries" action="/country">
+                 <input class="form-control" name="all-countries" list="all-countries" id="country-search" placeholder="Where Do You Want To Go...?">
                     <datalist id="all-countries">
                         {% for country in countries %}
                             <option value="{{ country.nicename }}">

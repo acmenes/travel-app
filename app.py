@@ -119,11 +119,11 @@ def show_country(nicename):
                                         safety_ratings=json.loads(country.safety_rating),
                                         pois=json.loads(country.pois), tours=json.loads(country.tours))
    
-@app.route('/country')
-def country_page():
-    # country_from_db = Country.query.get_or_404(country)
-    # country_search = request.form.get('country-search')
-    return redirect(f'/countries/{country_search}')
+# @app.route('/country')
+# def country_page():
+#     # country_from_db = Country.query.get_or_404(country)
+#     country_search = request.args['all-countries']
+#     return redirect(f'/countries/{country_search}')
 
 @app.route('/unesco-sites')
 def unesco_sites():
