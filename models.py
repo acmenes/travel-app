@@ -40,10 +40,6 @@ class User(db.Model):
 
         return False
 
-## create classes for dream destinations and been there done thats
-
-# I want this Country model to reflect the countries CSV I downloaded
-
 class Country(db.Model):
     '''Every country in the world'''
 
