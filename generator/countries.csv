@@ -225,7 +225,7 @@ id,iso,name,nicename,iso3,safety_rating,pois,tours,lat,lng
 224,UA,UKRAINE,Ukraine,UKR,None,None,None,None,None
 225,AE,UNITED ARAB EMIRATES,United Arab Emirates,ARE,None,None,None,None,None
 226,GB,UNITED KINGDOM,United Kingdom,GBR,None,None,None,None,None
-227,US,UNITED STATES,United States,USA,None,None,None,None,None
+227,US,USA,USA,USA,None,None,None,None,None
 228,UM,UNITED STATES MINOR OUTLYING ISLANDS,United States Minor Outlying Islands,USM,None,None,None,None,None
 229,UY,URUGUAY,Uruguay,URY,None,None,None,None,None
 230,UZ,UZBEKISTAN,Uzbekistan,UZB,None,None,None,None,None
