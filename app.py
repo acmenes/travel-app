@@ -196,7 +196,6 @@ def edit_profile(username):
     if g.user == user:
 
         if form.validate_on_submit():
-            user.username = form.username.data
             user.bio = form.bio.data
             user.img_url = form.img_url.data or User.img_url.default.arg
             db.session.commit()
