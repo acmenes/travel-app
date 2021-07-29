@@ -6,6 +6,8 @@ import json
 
 import config
 
+import os
+
 from sqlalchemy.exc import IntegrityError
 
 from restcountries import RestCountryApiV2 as rapi
@@ -15,7 +17,7 @@ from pprint import pprint
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = config.secret_key
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'MissMillieIsGood')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///travel-app'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
