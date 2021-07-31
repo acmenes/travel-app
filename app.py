@@ -5,7 +5,7 @@ from forms import EditUserForm, SignUpForm, LoginForm
 import json
 
 # commenting this out
-# import config
+import config
 
 import os
 
@@ -19,18 +19,27 @@ from pprint import pprint
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'MissMillieIsGood')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql:///travel-app')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
+# amadeus = Client(
+#     client_id = os.environ.get('CLIENT_ID'),
+#     client_secret= os.environ.get('CLIENT_SECRET'),
+#     hostname= os.environ.get('HOSTNAME')
+# )
+
 amadeus = Client(
-    client_id = os.environ.get('CLIENT_ID'),
-    client_secret= os.environ.get('CLIENT_SECRET'),
-    hostname= os.environ.get('HOSTNAME')
+    client_id = config.client_id,
+    client_secret = config.client_secret,
+    hostname = config.hostname
 )
 
-geocode_key = os.environ.get('GEOCODE_KEY')
+geocode_key = config.geocode
 geocoder = OpenCageGeocode(geocode_key)
+
+# geocode_key = os.environ.get('GEOCODE_KEY')
+# geocoder = OpenCageGeocode(geocode_key)
 
 CURR_USER_KEY = "curr_user"
 
