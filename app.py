@@ -19,15 +19,9 @@ from pprint import pprint
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'MissMillieIsGood')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql:///travel-app')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgres:///travel-app')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-
-### test key
-# amadeus = Client(
-#     client_id='GG2OA3MfjLRuOGzGavkdcHcWGCMKHws7',
-#     client_secret='qB6Ix6NuAsBwx0m8'
-# )
 
 amadeus = Client(
     client_id = os.environ.get('CLIENT_ID'),
