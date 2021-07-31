@@ -4,7 +4,7 @@ from models import db, connect_db, User, Country, Unesco, Destination, VisitedCo
 from forms import EditUserForm, SignUpForm, LoginForm
 import json
 
-import config
+# import config
 
 import os
 
@@ -28,15 +28,13 @@ app.config['SQLALCHEMY_ECHO'] = True
 #     client_secret='qB6Ix6NuAsBwx0m8'
 # )
 
-### prod key
-
 amadeus = Client(
-    client_id = config.client_id,
-    client_secret=config.client_secret,
-    hostname=config.hostname
+    client_id = os.environ.get('CLIENT_ID'),
+    client_secret= os.environ.get('CLIENT_SECRET'),
+    hostname= os.environ.get('HOSTNAME')
 )
 
-geocode_key = config.geocode
+geocode_key = os.environ.get('GEOCODE_KEY')
 geocoder = OpenCageGeocode(geocode_key)
 
 CURR_USER_KEY = "curr_user"
