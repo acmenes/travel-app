@@ -23,22 +23,22 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgres
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
-# amadeus = Client(
-#     client_id = os.environ.get('CLIENT_ID'),
-#     client_secret= os.environ.get('CLIENT_SECRET'),
-#     hostname= os.environ.get('HOSTNAME')
-# )
-
 amadeus = Client(
-    client_id = config.client_id,
-    client_secret = config.client_secret,
-    hostname = config.hostname
+    client_id = os.environ.get('CLIENT_ID'),
+    client_secret= os.environ.get('CLIENT_SECRET'),
+    hostname= os.environ.get('HOSTNAME')
 )
 
-geocode_key = config.geocode
+# amadeus = Client(
+#     client_id = config.client_id,
+#     client_secret = config.client_secret,
+#     hostname = config.hostname
+# )
+
+geocode_key = os.environ.get('GEOCODE_KEY')
 geocoder = OpenCageGeocode(geocode_key)
 
-# geocode_key = os.environ.get('GEOCODE_KEY')
+# geocode_key = config.geocode
 # geocoder = OpenCageGeocode(geocode_key)
 
 CURR_USER_KEY = "curr_user"
