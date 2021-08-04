@@ -4,10 +4,8 @@ from models import db, connect_db, User, Country, Unesco, Destination, VisitedCo
 from forms import EditUserForm, SignUpForm, LoginForm
 import json
 
-# commenting this out
-import config
-
 import os
+import psycopg2
 
 from sqlalchemy.exc import IntegrityError
 

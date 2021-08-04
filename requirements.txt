@@ -23,6 +23,7 @@ Jinja2==3.0.1
 MarkupSafe==2.0.1
 opencage==1.2.2
 psycopg2==2.9.1
+psycopg2-binary==2.9.1
 pycparser==2.20
 pyOpenSSL==20.0.1
 python-restcountries==1.0.0
