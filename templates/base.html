@@ -1,66 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="icon" href="/static/img/favicon.ico">
-    <link href="/static/app.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" href="/static/img/favicon.ico" />
+    <link href="/static/app.css" rel="stylesheet" />
     <title>Dream Destinations</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark ps-2" style="background-color: #4287f5;">
-        <a class="navbar-brand" href="/"><i class="fas fa-plane"></i>Dream Destinations</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/countries">Browse All The Countries</a>
-            </li>
-            <li class="nav-item">
-            {% if g.user %}
-               <li class="nav-item">
-                <a class="nav-link btn btn-primary text-white mr-3" type="button" href="/users/{{ g.user.username }}" data-toggle="modal" data-target="#myModal">{{ g.user.username }}'s Account</a>                  
-              </li>
-              <li class="nav-item">
-                <a class="nav-link btn btn-danger text-white mr-3" type="button" href="/logout" data-toggle="modal" data-target="#myModal">Sign Out</a>
-              </li>
-            {% else %}
-             <li class="nav-item">
-                <a class="nav-link btn btn-primary text-white mr-3" type="button" href="/login" data-toggle="modal" data-target="#myModal">Log In</a>                  
-              </li>
-              <li class="nav-item">
-                <a class="nav-link btn btn-success text-white mr-3" type="button" href="/signup" data-toggle="modal" data-target="#myModal">Register</a>
-              </li>
-            {% endif %}
-            
-          </ul>
-          <!-- <form class="d-flex">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline my-2 my-sm-0" style="background-color: #fafafa;" type="submit">Search</button>
-          </form> -->
-        </div>
-      </nav>
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                <span>{{ message }}</span>
-            </div>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark ps-2"
+      style="background-color: #4287f5"
+    >
+      <a class="navbar-brand" href="/"
+        ><i class="fas fa-plane"></i>Dream Destinations</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-{% block content %} {% endblock %}
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/countries">Browse All The Countries</a>
+          </li>
+          <li class="nav-item">{% if g.user %}</li>
 
-<script src="https://unpkg.com/jquery"></script>
-<script src="https://unpkg.com/axios/dist/axios.js"></script>
-<script src="/static/app.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-replace-svg="nest"></script>
+          <li class="nav-item">
+            <a
+              class="nav-link btn btn-primary text-white mr-3"
+              type="button"
+              href="/users/{{ g.user.username }}"
+              data-toggle="modal"
+              data-target="#myModal"
+              >{{ g.user.username }}'s Account</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link btn btn-danger text-white mr-3"
+              type="button"
+              href="/logout"
+              data-toggle="modal"
+              data-target="#myModal"
+              >Sign Out</a
+            >
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a
+              class="nav-link btn btn-primary text-white mr-3"
+              type="button"
+              href="/login"
+              data-toggle="modal"
+              data-target="#myModal"
+              >Log In</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link btn btn-success text-white mr-3"
+              type="button"
+              href="/signup"
+              data-toggle="modal"
+              data-target="#myModal"
+              >Register</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div
+      class="alert alert-{{ category }} alert-dismissible fade show"
+      role="alert"
+    >
+      <span>{{ message }}</span>
+    </div>
+    {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
 
-</body>
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="/static/app.js"></script>
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
+      data-auto-replace-svg="nest"
+    ></script>
+  </body>
 </html>
