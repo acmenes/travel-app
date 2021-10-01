@@ -1,3 +1,6 @@
+from pprint import pprint
+from opencage.geocoder import OpenCageGeocode
+from amadeus import Client, ResponseError, Location
 from flask import Flask, render_template, request, jsonify, flash, session, g
 from werkzeug.utils import redirect
 from models import db, connect_db, User, Country, Unesco, Destination, VisitedCountry
@@ -9,10 +12,8 @@ import psycopg2
 
 from sqlalchemy.exc import IntegrityError
 
-from restcountries import RestCountryApiV3 as rapi
-from amadeus import Client, ResponseError, Location
-from opencage.geocoder import OpenCageGeocode
-from pprint import pprint
+from restcountries import RestCountryApiV2 as rapi
+rapi.BASE_URI = "https://restcountries.com/v2"
 
 app = Flask(__name__)
 
@@ -29,9 +30,9 @@ amadeus = Client(
 )
 
 # amadeus = Client(
-#     client_id = config.client_id,
-#     client_secret = config.client_secret,
-#     hostname = config.hostname
+#     client_id=config.client_id,
+#     client_secret=config.client_secret,
+#     hostname=config.hostname
 # )
 
 geocode_key = os.environ.get('GEOCODE_KEY')
@@ -51,11 +52,10 @@ connect_db(app)
 def add_global_user():
     '''If you are logged in, you will be added as the Global User'''
 
+    g.user = None
+
     if CURR_USER_KEY in session:
         g.user = User.query.get(session[CURR_USER_KEY])
-
-    else:
-        g.user = None
 
 
 def do_login(user):
@@ -96,12 +96,8 @@ def show_countries():
 def show_country(nicename):
     country = Country.query.get(nicename)
 
-    country_search = rapi.get_countries_by_name(nicename,
-                                                filters=["name",
-                                                         "capital",
-                                                         "flag",
-                                                         "currencies",
-                                                         "languages"])
+    # due to a change in the rest countries API, we no longer need the filters
+    country_search = rapi.get_countries_by_name(nicename)
     cap_country = (f'{country_search[0].capital}, {country_search[0].name}')
     coords = geocoder.geocode(cap_country)
 
@@ -159,8 +155,7 @@ def sign_up():
 
         return redirect('/')
 
-    else:
-        return render_template('signup.html', form=form)
+    return render_template('signup.html', form=form)
 
 
 @app.route('/login', methods=["GET", "POST"])
